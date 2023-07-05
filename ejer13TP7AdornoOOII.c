@@ -25,7 +25,7 @@ int main(){
 
 int CargarPreArray(TData *num){
 
-	int i=0;
+	int i=1;
 	char carga;
 
 	printf("Ingrese la cantidad de numeros que desea cargar: \n\t");
@@ -58,20 +58,60 @@ void InsertarOrd(TData *num, TData *ord){
 		printf("valor de n: %d\n", n);
 		printf("\n\n___________________________________________________\n");
 		if(n>0 && n<=10){
-			i=1;
+			i=0;
 			printf("\nvalor de i comienzo del if %d\n",i);
 			ord->cant =(*num).cant+1;
 			printf("_________________cantidad cargada en el arreglo num:%d\n", num->cant);
 			printf("_________________cantidad cargada en el arreglo ord:%d\n", ord->cant);
 			printf("\n\n___________________________________________________\n");
 
-			while((i<=ord->cant) && n>(*num).a[i]){
+			//12:09 voy a poner otro if, que discrimine cuando n>num.ai ponga a n en el ord.aultimo, y con while rellene del primero al penultimo
+			if(n>=(*num).a[(*num).cant]){
+				ord->a[ord->cant]=n;
+				printf("-valor de ord.[%d] del 1° while %d\n",i, ord->a[ord->cant]);
+				while(i<ord->cant){
+					ord->a[i] = (*num).a[i];
+					printf("-valor de ord.[%d] del 1° while %d\n",i, ord->a[i]);
+					i=i+1;
+					printf("-valor de i dentro del 2° while %d\n",i);
+				}
+			//queda ver el caso cuando n este en medio n>num.ai y n<num.ai+1
+			}else if(n>(*num).a[i]){				
+				while(i<=ord->cant && n>(*num).a[i]){
+				ord->a[i] = (*num).a[i];
+				printf("-valor de ord.[%d] del 2° while %d\n",i, ord->a[i]);
+				i++;
+				printf("-valor de i dentro del 2° while %d\n",i);
+				}
+				printf("\n\n___________________________________________________\n");
+				printf("valor de i fuera del primer while %d\n",i);
+
+				ord->a[i]=n;
+				printf("\n__valor de ord.[%d] fuera del primer while(tiene que ser igual a n): %d\n",i, ord->a[i]);
+
+				j=i+1;
+				printf("valor de j antes de entrar al segundo while %d\n",j);
+				printf("\n\n___________________________________________________\n");
+				while(j<=ord->cant){
+					printf("_________________cantidad cargada en el arreglo ord:%d\n", ord->cant);
+					ord->a[j]=(*num).a[i];
+					printf("\n--valor de num[%d] del segundo while %d\n",i, num->a[i]);
+					printf("--valor de ord[%d] del segundo while %d\n",j, ord->a[j]);
+					j++;
+					printf("--valor de j en 2°while %d\n",j);
+					i++;
+					printf("--valor de i en el 2°while %d\n",i);
+				}
+
+			}
+
+			/*while(i<=ord->cant && (n>(*num).a[i])){
 				ord->a[i] = (*num).a[i];
 				printf("-valor de ord.[%d] del primer while %d\n",i, ord->a[i]);
 				i=i+1;
 				printf("-valor de i dentro del 1° while %d\n",i);
-			}
-			printf("\n\n___________________________________________________\n");
+			}*/
+			/*printf("\n\n___________________________________________________\n");
 
 			printf("valor de i fuera del primer while %d\n",i);
 			ord->a[i]=n;
@@ -89,8 +129,8 @@ void InsertarOrd(TData *num, TData *ord){
 				printf("--valor de j en 2°while %d\n",j);
 				i++;
 				printf("--valor de i en el 2°while %d\n",i);
-			}
-			printf("\n\n___________________________________________________\n");
+			}*/
+			//printf("\n\n___________________________________________________\n");
 		}else{
 			printf("Numero no valido");
 		}
