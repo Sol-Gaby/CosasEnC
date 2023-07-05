@@ -1,0 +1,24 @@
+{
+		if(n % 2 = 0){
+
+		}
+	}
+
+	if( n == 2 ){
+
+		esPrimo = true;
+
+	}else if(n!= 2 && n != 1){
+		//double raiz = sqrt(n);
+
+		//printf("%d", (int)raiz);
+
+		do{
+			if ((n % 2) == 0){
+				aux++;
+				raiz = raiz - 1;
+			}
+		}while(raiz != 0);
+	};
+	
+	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
